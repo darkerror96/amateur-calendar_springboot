@@ -1,0 +1,29 @@
+<!-- @author rutpatel -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+	<meta charset="UTF-8">
+		<title>Calendar Demo</title>
+		<script>
+			function validateForm() {
+			    var year = document.forms["calendarForm"]["year"].value;
+			    if (!(year.length == 4)) {
+			    	document.forms["calendarForm"]["year"].value = "";
+			        alert("Year length should be 4 digits. Try again...");
+			        return false;
+			    }
+			}
+		</script>
+	</head>
+	<body>
+		<form name="calendarForm" action="CalendarController" method="post" onsubmit="return validateForm()">
+			<table>
+				<tr>
+					<th>Enter Year :</th>
+					<th><input type="number" name="year" placeholder="yyyy" autofocus required/><br></th>
+				</tr>
+			</table>
+			<br><br><input type="submit" name="Generate"/>
+		</form>
+	</body>
+</html>
