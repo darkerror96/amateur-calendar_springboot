@@ -2,38 +2,75 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <link rel="stylesheet" type="text/css" th:href="@{styles.css}" />
+<style>
+body {
+	background: lightblue;
+}
+
+h1, h2 {
+	text-align: center;
+}
+
+table.center {
+	margin-left: auto;
+	margin-right: auto;
+}
+</style>
 <title>Calendar</title>
 </head>
 <body>
+	<hr>
 	<h1>Calendar Generator</h1>
+	<hr>
+	<br>
 	<form method="post" action="Calendar">
-		<label for="year">Enter year:</label> <input type="text" name="year"
-			id="year" pattern="^\d{4}$" title="Enter a 4 digit year"> <input
-			type="submit" name="submit" value="Generate Calendar">
+		<table class="center">
+			<tr>
+				<td>Enter Year: <input type="text" name="year" id="year"
+					pattern="^\d{4}$" placeholder="yyyy">
+				</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td><input type="submit" name="submit" value="Generate">
+				</td>
+			</tr>
+		</table>
 	</form>
+	<br>
+	<hr>
+	<h2>
+		Federal Holidays for <span th:text="${year}"></span>
+	</h2>
+	<hr>
+	<table class="center">
+		<tr>
+			<td>
+				<ul>
+					<li th:text="${NewYearsDay}"></li>
+					<li th:text="${MLKDay}"></li>
+					<li th:text="${PresidentsDay}"></li>
+					<li th:if="${GoodFriday} != null" th:text="${GoodFriday}"></li>
+					<li th:if="${EasterSunday} != null" th:text="${EasterSunday}"></li>
+					<li th:text="${MemorialDay}"></li>
+					<li th:text="${IndependenceDay}"></li>
+					<li th:text="${LaborDay}"></li>
+					<li th:text="${ColumbusDay}"></li>
+					<li th:text="${VeteransDay}"></li>
+					<li th:text="${Thanksgiving}"></li>
+					<li th:text="${Christmas}"></li>
+				</ul>
+			</td>
+		</tr>
+	</table>
+	<hr>
 	<h2>
 		Calendar for <span th:text="${year}"></span>
 	</h2>
-	<p style="color: red;">Holidays</p>
-	<ul>
-		<li th:text="${NewYearsDay}"></li>
-		<li th:text="${MLKDay}"></li>
-		<li th:text="${PresidentsDay}"></li>
-		<li th:if="${GoodFriday} != null" th:text="${GoodFriday}"></li>
-		<li th:if="${EasterSunday} != null" th:text="${EasterSunday}"></li>
-		<li th:text="${MemorialDay}"></li>
-		<li th:text="${IndependenceDay}"></li>
-		<li th:text="${LaborDay}"></li>
-		<li th:text="${ColumbusDay}"></li>
-		<li th:text="${VeteransDay}"></li>
-		<li th:text="${Thanksgiving}"></li>
-		<li th:text="${Christmas}"></li>
-	</ul>
-	<br>
-	<br>
+	<hr>
 	<div class="row">
 		<div class="column">
-			<table>
+			<table class="center">
 				<caption>January</caption>
 				<tr>
 					<th class="thstyle">Sun</th>
@@ -56,7 +93,6 @@
 				</tr>
 			</table>
 		</div>
-
 		<div class="column">
 			<table>
 				<caption>February</caption>
@@ -81,18 +117,11 @@
 				</tr>
 			</table>
 		</div>
-
-
-
 	</div>
-
-
-
 	<div class="row">
 		<div class="column">
 			<table>
 				<caption>March</caption>
-
 				<tr>
 					<th class="thstyle">Sun</th>
 					<th class="thstyle">Mon</th>
@@ -102,7 +131,6 @@
 					<th class="thstyle">Fri</th>
 					<th class="thstyle">Sat</th>
 				</tr>
-
 				<tr th:each="row: ${MAR}">
 					<th:block th:each="column: ${row}">
 						<th:block th:unless="${column?.isHoliday}">
@@ -118,7 +146,6 @@
 		<div class="column">
 			<table>
 				<caption>April</caption>
-
 				<tr>
 					<th class="thstyle">Sun</th>
 					<th class="thstyle">Mon</th>
@@ -128,7 +155,6 @@
 					<th class="thstyle">Fri</th>
 					<th class="thstyle">Sat</th>
 				</tr>
-
 				<tr th:each="row: ${APR}">
 					<th:block th:each="column: ${row}">
 						<th:block th:unless="${column?.isHoliday}">
@@ -142,12 +168,10 @@
 			</table>
 		</div>
 	</div>
-
 	<div class="row">
 		<div class="column">
 			<table>
 				<caption>May</caption>
-
 				<tr>
 					<th class="thstyle">Sun</th>
 					<th class="thstyle">Mon</th>
@@ -157,7 +181,6 @@
 					<th class="thstyle">Fri</th>
 					<th class="thstyle">Sat</th>
 				</tr>
-
 				<tr th:each="row: ${MAY}">
 					<th:block th:each="column: ${row}">
 						<th:block th:unless="${column?.isHoliday}">
@@ -170,11 +193,9 @@
 				</tr>
 			</table>
 		</div>
-
 		<div class="column">
 			<table>
 				<caption>June</caption>
-
 				<tr>
 					<th class="thstyle">Sun</th>
 					<th class="thstyle">Mon</th>
@@ -184,7 +205,6 @@
 					<th class="thstyle">Fri</th>
 					<th class="thstyle">Sat</th>
 				</tr>
-
 				<tr th:each="row: ${JUN}">
 					<th:block th:each="column: ${row}">
 						<th:block th:unless="${column?.isHoliday}">
@@ -198,13 +218,10 @@
 			</table>
 		</div>
 	</div>
-
-
 	<div class="row">
 		<div class="column">
 			<table>
 				<caption>July</caption>
-
 				<tr>
 					<th class="thstyle">Sun</th>
 					<th class="thstyle">Mon</th>
@@ -214,7 +231,6 @@
 					<th class="thstyle">Fri</th>
 					<th class="thstyle">Sat</th>
 				</tr>
-
 				<tr th:each="row: ${JUL}">
 					<th:block th:each="column: ${row}">
 						<th:block th:unless="${column?.isHoliday}">
@@ -227,11 +243,9 @@
 				</tr>
 			</table>
 		</div>
-
 		<div class="column">
 			<table>
 				<caption>August</caption>
-
 				<tr>
 					<th class="thstyle">Sun</th>
 					<th class="thstyle">Mon</th>
@@ -241,7 +255,6 @@
 					<th class="thstyle">Fri</th>
 					<th class="thstyle">Sat</th>
 				</tr>
-
 				<tr th:each="row: ${AUG}">
 					<th:block th:each="column: ${row}">
 						<th:block th:unless="${column?.isHoliday}">
@@ -255,12 +268,10 @@
 			</table>
 		</div>
 	</div>
-
 	<div class="row">
 		<div class="column">
 			<table>
 				<caption>September</caption>
-
 				<tr>
 					<th class="thstyle">Sun</th>
 					<th class="thstyle">Mon</th>
@@ -270,7 +281,6 @@
 					<th class="thstyle">Fri</th>
 					<th class="thstyle">Sat</th>
 				</tr>
-
 				<tr th:each="row: ${SEP}">
 					<th:block th:each="column: ${row}">
 						<th:block th:unless="${column?.isHoliday}">
@@ -283,11 +293,9 @@
 				</tr>
 			</table>
 		</div>
-
 		<div class="column">
 			<table>
 				<caption>October</caption>
-
 				<tr>
 					<th class="thstyle">Sun</th>
 					<th class="thstyle">Mon</th>
@@ -297,7 +305,6 @@
 					<th class="thstyle">Fri</th>
 					<th class="thstyle">Sat</th>
 				</tr>
-
 				<tr th:each="row: ${OCT}">
 					<th:block th:each="column: ${row}">
 						<th:block th:unless="${column?.isHoliday}">
@@ -311,12 +318,10 @@
 			</table>
 		</div>
 	</div>
-
 	<div class="row">
 		<div class="column">
 			<table>
 				<caption>November</caption>
-
 				<tr>
 					<th class="thstyle">Sun</th>
 					<th class="thstyle">Mon</th>
@@ -326,7 +331,6 @@
 					<th class="thstyle">Fri</th>
 					<th class="thstyle">Sat</th>
 				</tr>
-
 				<tr th:each="row: ${NOV}">
 					<th:block th:each="column: ${row}">
 						<th:block th:unless="${column?.isHoliday}">
@@ -339,12 +343,9 @@
 				</tr>
 			</table>
 		</div>
-
 		<div class="column">
-
 			<table>
 				<caption>December</caption>
-
 				<tr>
 					<th class="thstyle">Sun</th>
 					<th class="thstyle">Mon</th>
@@ -354,7 +355,6 @@
 					<th class="thstyle">Fri</th>
 					<th class="thstyle">Sat</th>
 				</tr>
-
 				<tr th:each="row: ${DEC}">
 					<th:block th:each="column: ${row}">
 						<th:block th:unless="${column?.isHoliday}">
@@ -368,5 +368,6 @@
 			</table>
 		</div>
 	</div>
+	<hr>
 </body>
 </html>
