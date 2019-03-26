@@ -16,11 +16,11 @@ li {
 caption {
 	font-weight: bold;
 	color: white;
-	background-color: SlateGrey ;
+	background-color: maroon;
 }
 
 .holiday {
-	color: red;
+	color: #f42300;
 	width: 100px;
 	text-align: right;
 }
